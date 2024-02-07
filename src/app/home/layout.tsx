@@ -1,5 +1,7 @@
 'use client';
 import { useEffect } from 'react';
+import AuthWrapper2 from '../../commonComponents/authWrapper2';
+import { useEnhancedSelector } from '../../Helpers/reduxHooks';
 
 const baseURL = 'https://linkwave.io';
 const url = `${baseURL}/home`;
@@ -17,5 +19,5 @@ export default function ChildLayout({ children }: { children: React.ReactNode })
     }
   }, []);
 
-  return <>{children}</>;
+  return <AuthWrapper2>{children}</AuthWrapper2>;
 }

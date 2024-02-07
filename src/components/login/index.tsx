@@ -1,9 +1,9 @@
 import { Button, CircularProgress, TextField } from '@mui/material';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useEnhancedDispatch, useEnhancedSelector } from '../../Helpers/reduxHooks';
 import * as Actions from '../../store/actions';
-const Login = () => {
+const Login: React.FC<{ fromAuthWrapper?: boolean }> = (props) => {
   const dispatch = useEnhancedDispatch();
   const router = useRouter();
 
@@ -11,6 +11,8 @@ const Login = () => {
   const [Password, setPassword] = useState('');
   const [ErrorMsg, setErrorMsg] = useState('');
   const [IsLoading, setIsLoading] = useState(false);
+
+  const IsAuth = useEnhancedSelector((state) => state.user.isAuth);
 
   async function loginUserFunction() {
     try {
@@ -24,6 +26,9 @@ const Login = () => {
       if (res) throw res;
 
       setIsLoading(false);
+      if (!props.fromAuthWrapper) {
+        router.push('/home');
+      }
     } catch (error) {
       setIsLoading(false);
       if (typeof error === 'string') {

@@ -20,7 +20,6 @@ import i18n from '../../i18n';
 import { ASSETS } from '../constants';
 import useIsDarkMode from '../Helpers/useIsDarkMode';
 import { useEffect } from 'react';
-import AuthWrapper from '../commonComponents/authWrapper';
 
 const baseURL = 'https://linkwave.io';
 const pageUrl = `${baseURL}/`;
@@ -71,9 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <I18nextProvider i18n={i18n}>
           <Provider store={store}>
             <ThemeProvider theme={isDarkMode ? darkThemeOptions : lightThemeOptions}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <AuthWrapper>{children}</AuthWrapper>
-              </LocalizationProvider>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>{children}</LocalizationProvider>
             </ThemeProvider>
             <ToastContainer
               position="top-right"

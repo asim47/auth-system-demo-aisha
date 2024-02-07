@@ -29,6 +29,7 @@ export const loginAction = (email: string, password: string): AppThunkPromise<st
 export const restoreSession = (): AppThunkPromise<void | boolean> => {
   return async (dispatch) => {
     try {
+      // throw "Testing error"
       const token = localStorage.getItem('@Token');
 
       const res = await axios.get<LoginUserResponse>(`${API_ENDPOINT}/customer/verifyToken`, {
