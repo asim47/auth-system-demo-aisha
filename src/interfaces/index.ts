@@ -2,12 +2,13 @@ export interface UserStore {
   isAuth: boolean;
   userData: UserInterface | null;
   token: string | null;
+  adminsUsers: UserInterface[];
 }
 
 export interface LoginUserResponse {
   Error: boolean;
   Msg: string;
-  Customer: UserInterface;
+  AdminUser: UserInterface;
   Token: string;
   Exception: any;
   ExecptionString: string;
@@ -15,12 +16,9 @@ export interface LoginUserResponse {
 
 export interface UserInterface {
   ContactNo: string;
-  ProfilePicture: string;
-  City: string;
-  PostalCode: string;
-  Gender: string;
-  IsActive: boolean;
   UserType: string;
+  IsActive: boolean;
+  ProfilePicture: string;
   _id: string;
   FirstName: string;
   LastName: string;
@@ -29,4 +27,15 @@ export interface UserInterface {
   createdAt: string;
   updatedAt: string;
   __v: number;
+}
+
+export interface GetUsersResponse {
+  Error: boolean;
+  TotalPages: number;
+  TotalRecords: number;
+  RecordsFound: number;
+  Msg: string;
+  AdminUsers: UserInterface[];
+  Exception: any;
+  ExecptionString: string;
 }

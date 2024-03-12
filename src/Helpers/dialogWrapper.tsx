@@ -59,6 +59,7 @@ interface DialogWrapperProps {
   hideCancelButton?: boolean;
   isLoadingActions?: boolean;
   customRadius?: boolean;
+  errorMsg?: string;
 }
 
 export const DialogWrapper: React.FC<DialogWrapperProps> = (props) => {
@@ -99,6 +100,7 @@ export const DialogWrapper: React.FC<DialogWrapperProps> = (props) => {
             <CircularProgress />
           ) : (
             <>
+              {props.errorMsg && <p style={{ color: 'red' }}>{props.errorMsg}</p>}
               {props.hideCancelButton ? null : (
                 <Button variant="outlined" color="primary" onClick={props.onCancel ? props.onCancel : props.onClose}>
                   {props.cancelButtonText || 'Close'}

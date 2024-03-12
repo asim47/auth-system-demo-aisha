@@ -5,6 +5,7 @@ const initialState: UserStore = {
   isAuth: false,
   userData: null,
   token: null,
+  adminsUsers: [],
 };
 
 export const UserSlice = createSlice({
@@ -22,12 +23,14 @@ export const UserSlice = createSlice({
       state.isAuth = false;
       state.userData = null;
       state.token = null;
-
       localStorage.removeItem('@Token');
+    },
+    setAdminUsers(state, action) {
+      state.adminsUsers = action.payload;
     },
   },
 });
 
-export const { setUserDataAndToken, logoutUser } = UserSlice.actions;
+export const { setUserDataAndToken, logoutUser, setAdminUsers } = UserSlice.actions;
 
 export const UserReducer = UserSlice.reducer;
